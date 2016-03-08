@@ -1,0 +1,55 @@
+<template name="manageTemplate">
+    <h1>Manage Services</h1>
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#myModal">Add Service</button></div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr> <th>Name</th> <th>Type</th> <th>Remove</th></tr>
+                </thead>
+                <tbody>
+                    {{#each services}}
+                    <tr>
+                        <td>{{name}}</td> <td>{{type}}</td> <td><span class="glyphicon glyphicon-remove-sign remove-service" aria-hidden="true"></span></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Service</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" placeholder="Service name" id="service-name">
+                        </div>
+                        <div class="form-group">
+                            <label class="radio-inline">
+                                <input type="radio" name="service-type" value="data"> Data Service
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="service-type" value="external"> External Service
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary save-service">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>
