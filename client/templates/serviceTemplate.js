@@ -68,5 +68,25 @@ Template.serviceTemplate.events({
         } else {
             bootbox.alert("Please, select a node first.");
         }
+    },
+
+    "submit .search-form": function(e) {
+        e.preventDefault();
+        if (e.target.query.value.length > 0) {
+            Meteor.call("searchQuery", e.target.query.value, Session.get("serviceId"), function(error, result){
+                if (error) {
+                    bootbox.alert("Problem while processing query. Please, try again.");
+                } else {
+                    $('#search-tree').treeview(
+                        {
+                            data: result,
+                            showBorder: false
+                        }
+                        );
+                }
+            });
+        } else {
+            bootbox.alert("Please, type in a query.");
+        }
     }
 });

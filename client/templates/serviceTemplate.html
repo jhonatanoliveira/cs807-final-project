@@ -6,15 +6,38 @@
             <div id="tree"></div>
         </div>
         <div class="col-md-4">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                <h3 class="panel-title">Action</h3>
+            <div class="row">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                    <h3 class="panel-title">Action</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-primary add-child">Add Child</button>
+                            <button type="button" class="btn btn-warning edit-value">Edit Value</button>
+                            <button type="button" class="btn btn-danger remove-branch">Remove Branch</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-primary add-child">Add Child</button>
-                        <button type="button" class="btn btn-warning edit-value">Edit Value</button>
-                        <button type="button" class="btn btn-danger remove-branch">Remove Branch</button>
+            </div>
+            <div class="row">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                    <h3 class="panel-title">Search sandbox</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <form class="search-form">
+                            <div class="form-group">
+                                <label>Query</label>
+                                <input name="query" type="text" class="form-control" placeholder="search query">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+
+                        <br/>
+                        <div id="search-tree"></div>
+
                     </div>
                 </div>
             </div>
