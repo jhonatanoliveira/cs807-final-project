@@ -62,7 +62,7 @@ Meteor.methods(
 
         // Breadth-first search
         var queue = [];
-        var root = Nodes.findOne({serviceId: serviceId, parent: ""});
+        var root = Nodes.findOne({parent: ""});
         var currentTreeNode = {_id: root._id, points: 0, confidence: 0};
 
         queue.push(currentTreeNode);
@@ -70,7 +70,7 @@ Meteor.methods(
         var hasNewBestNode = false;
         while(queue.length > 0) {
             currentTreeNode = queue.pop();
-            Nodes.find({serviceId: serviceId, parent: currentTreeNode._id}).forEach(function(post){
+            Nodes.find({parent: currentTreeNode._id}).forEach(function(post){
               var newPoints = 0;
 
               // Matching function: Using FuzzySet library from http://glench.github.io/fuzzyset.js/
@@ -110,7 +110,7 @@ Meteor.methods(
         var queue = [];
 
         for (var i = 0; i < bestNodes.length; i++) {
-          var n = Nodes.findOne({serviceId: serviceId, _id: bestNodes[i]._id});
+          var n = Nodes.findOne({_id: bestNodes[i]._id});
           var currentTreeNode = {_id: n._id, text: n.value, nodes: [], confidence: bestNodes[i].confidence};
           data.push(currentTreeNode);
           
@@ -120,7 +120,7 @@ Meteor.methods(
 
         while(queue.length > 0) {
             currentTreeNode = queue.pop();
-            Nodes.find({serviceId: serviceId, parent: currentTreeNode._id}).forEach(function(post){
+            Nodes.find({parent: currentTreeNode._id}).forEach(function(post){
                 var childTreeNode = {_id: post._id, text: post.value, nodes: []};
                 currentTreeNode.nodes.push(childTreeNode);
                 queue.push(childTreeNode);

@@ -1,4 +1,18 @@
 // *** Routes ***
+Router.route("/", function(){
+
+    this.wait(Meteor.subscribe("services"));
+
+    this.layout("clientLayout");
+
+    if (this.ready()) {
+        this.render("mainTemplate")
+    } else {
+        this.render("loadingTemplate");
+    }
+});
+
+
 Router.route("/login", function(){
     this.layout("clientLayout");
     this.render("loginTemplate")

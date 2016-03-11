@@ -73,7 +73,7 @@ Template.serviceTemplate.events({
     "submit .search-form": function(e) {
         e.preventDefault();
         if (e.target.query.value.length > 0) {
-            Meteor.call("searchQuery", e.target.query.value, Session.get("serviceId"), function(error, result){
+            Meteor.call("searchQuery", e.target.query.value, function(error, result){
                 if (error) {
                     bootbox.alert("Problem while processing query. Please, try again.");
                 } else {
