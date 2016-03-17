@@ -64,6 +64,23 @@ Router.route("/admin/service/:_id", function(){
 
 });
 
+Router.route("/admin/map/:_id", function(){
+
+    this.wait([Meteor.subscribe("maps"), Meteor.subscribe("services")]);
+
+    var mapId = this.params._id;
+    this.layout("adminLayout");
+    if (this.ready()) {
+        this.render("mapTemplate", {
+            data: function() {
+                return Maps.findOne({_id: mapId});
+            }
+        });
+    } else {
+        this.render("loadingTemplate");
+    }
+});
+
 
 // *** Hooks ***
 Router.onBeforeAction(function () {

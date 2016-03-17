@@ -1,0 +1,104 @@
+<template name="mapTemplate">
+    <h1>Map {{name}}</h1>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                <h3 class="panel-title">Mappings <span class="glyphicon glyphicon-plus-sign add-map" aria-hidden="true" style="cursor:pointer;"></span></h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {{#each maps}}
+                        <button name="mapBtn" type="button" class="list-group-item map-btn" value="{{_id}}">{{name}}</button>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            {{#if name}}
+
+            <div class="row">
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                <h3 class="panel-title">Map <span class="glyphicon glyphicon-refresh refresh-map" aria-hidden="true" style="cursor:pointer;" value="{{_id}}"></span></h3>
+                </div>
+                <div class="panel-body">
+                    <div id="drawing"></div>
+                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                <h3 class="panel-title">Grid size</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-inline map-grid-size-form">
+                        <div class="form-group">
+                            <input type="hidden" name="mapId" value="{{_id}}">
+                            <input name="gridW" type="text" class="form-control" placeholder="Width" value="{{gridW}}">
+                            <input name="gridH" type="text" class="form-control" placeholder="Height" value="{{gridH}}">
+                        </div>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                <h3 class="panel-title">Image size</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-inline map-image-size-form">
+                        <div class="form-group">
+                            <input type="hidden" name="mapId" value="{{_id}}">
+                            <input name="imageW" type="text" class="form-control" placeholder="Width" value="{{imageW}}">
+                            <input name="imageH" type="text" class="form-control" placeholder="Height" value="{{imageH}}">
+                        </div>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                <h3 class="panel-title">Block size</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-inline map-block-size-form">
+                        <div class="form-group">
+                            <input type="hidden" name="mapId" value="{{_id}}">
+                            <input name="blockSize" type="text" class="form-control" placeholder="Block size" value="{{blockSize}}">
+                        </div>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                <h3 class="panel-title">Image map address</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-inline map-add-form">
+                        <div class="form-group">
+                            <input type="hidden" name="mapId" value="{{_id}}">
+                            <input name="mapAdd" type="text" size="30" class="form-control" placeholder="Ex: http://example.com/image.jpg" value="{{url}}">
+                        </div>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</template>

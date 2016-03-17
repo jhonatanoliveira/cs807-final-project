@@ -23,3 +23,18 @@ Nodes.allow({
         return userId;
     }
 })
+
+
+Maps = new Mongo.Collection("maps");
+
+Maps.allow({
+    insert: function(userId, doc) {
+        return userId;
+    },
+    remove: function(userId, doc) {
+        return userId;
+    },
+    update: function(userId, doc) {
+        return userId;
+    }
+})
