@@ -3,7 +3,7 @@
 % **************************************************
 \documentclass[%
 	paper=A4,					% paper size --> A4 is default in Germany
-	twoside=true,				% onesite or twoside printing
+	twoside=false,				% onesite or twoside printing
 	openright,					% doublepage cleaning ends up right side
 	parskip=full,				% spacing value / method for paragraphs
 	chapterprefix=true,			% prefix for chapter marks
@@ -54,7 +54,11 @@
 % **************************************************
 % Load and Configure Packages
 % **************************************************
+\usepackage[utf8]{inputenc}		% defines file's character encoding
 \usepackage[english]{babel} % babel system, adjust the language of the content
+\usepackage{marginnote} %margin note
+\usepackage{paralist} %inline list
+\usepackage{hyperref}
 \usepackage[					% clean thesis style
 	figuresep=colon,%
 	sansserif=false,%
@@ -63,16 +67,14 @@
 	hangsubsection=true,%
 	colorize=full,%
 	colortheme=bluemagenta,%
-	bibsys=bibtex,%
-	bibfile=bib-refs,%
-	bibstyle=alphabetic,%
+	bibsys=bibtex,
 ]{cleanthesis}
 
 \hypersetup{					% setup the hyperref-package options
 	pdftitle={\thesisTitle},	% 	- title (PDF meta)
 	pdfsubject={\thesisSubject},% 	- subject (PDF meta)
 	pdfauthor={\thesisName},	% 	- author (PDF meta)
-	plainpages=false,			% 	-
+	plainpages=false,			% 	- 
 	colorlinks=false,			% 	- colorize links?
 	pdfborder={0 0 0},			% 	-
 	breaklinks=true,			% 	- allow line break inside links
@@ -131,21 +133,24 @@
 % --------------------------
 % Back matter
 % --------------------------
-{%
-\setstretch{1.1}
-\renewcommand{\bibfont}{\normalfont\small}
-\setlength{\biblabelsep}{0pt}
-\setlength{\bibitemsep}{0.5\baselineskip plus 0.5\baselineskip}
-\printbibliography[nottype=online]
-\printbibliography[heading=subbibliography,title={Webseiten},type=online,prefixnumbers={@}]
-}
-\cleardoublepage
+%{%
+%\setstretch{1.1}
+%\renewcommand{\bibfont}{\normalfont\small}
+%\setlength{\biblabelsep}{0pt}
+%\setlength{\bibitemsep}{0.5\baselineskip plus 0.5\baselineskip}
+%\printbibliography[nottype=online]
+%\printbibliography[heading=subbibliography,title={Webseiten},type=online,prefixnumbers={@}]
+%}
+%\cleardoublepage
+%
+%\listoffigures
+%\cleardoublepage
+%
+%\listoftables
+%\cleardoublepage
 
-\listoffigures
-\cleardoublepage
-
-\listoftables
-\cleardoublepage
+\bibliographystyle{splncs03}
+\bibliography{references}
 
 %\input{content/colophon}
 %\cleardoublepage
