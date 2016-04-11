@@ -7,8 +7,211 @@
 
 \section{Terminal Services}
 
+
+As defined by \cite{satish2012money}, ``an interactive kiosk is a computer terminal featuring specialized hardware and software designed within a public exhibit that provides access to information and applications for communication, commerce, entertainment, and education.''
+
+Integration of technology allows kiosks to perform a wide range of functions, evolving into self-service kiosks.
+
+Types of kiosks
+Telekiosk
+Financial services kiosk
+Photo kiosk
+Internet kiosk
+Ticketing kiosk
+Information kiosk
+
+
+As companies in a range of industries seek to reduce costs, increase revenue opportunities, and improve customer service, they are increasingly turning to interactive kiosks as an additional channel to enable their customers with self-service options. 
+The number of interactive kiosks in operation will rise from approximately 1.6 million deployed in 2011 to nearly three million deployed globally by 2016.
+https://www.abiresearch.com/press/the-number-of-interactive-kiosks-in-operation-will/
+
+
+While the interactive kiosk market is expected to grow strongly over the next five years, there remain challenges to address.  “Interactive kiosks in various segments, such as healthcare, can face challenges regarding consumer acceptance, channel conflict with other means of interacting with the consumer, and with automated customer service not meeting a desired level of personalized support,” says Lucero. 
+
+
+Reliability is an important consideration, and as a result many specialised kiosk software applications have been developed for the industry. These applications interface with the bill acceptor and credit card swipe, meter time, prevent users from changing the configuration of software or downloading computer viruses and allow the kiosk owner to see revenue. Threats to reliability come from vulnerabilities to hacking, allowing access to the OS, and the need for a session or hardware restart
+%http://www.kioskmarketplace.com/whitepapers/software-security-the-importance-of-locking-down-your-self-service-kiosk/
+
+
+The kiosk industry is divided into three segments: kiosk hardware, kiosk software, and kiosk application. Kiosk software locks down your operating system (be it Apple, Windows, Android, or Linux) to restrict access and/or functionality of a kiosk hardware device. This allows for users to interact with an application that serves a self-service purpose such as those mentioned above.
+Kiosk manufacturing industry
+
+Historically electronic kiosks though are standalone enclosures which accept user input, integrate many devices, include a software GUI application and remote monitoring and are deployed widely across all industry verticals. This is considered "Kiosk Hardware" within the kiosk industry.
+
+POS-related "kiosks" are "lane busting" check-outs such as seen at large retailers like Home Depot and Kroger.
+
+Simple touchscreen terminals or panel-pcs are another segment and enjoy most of their footprint in POS retail applications and typically facing the employee. Terminals include NCR Advantage (740x terminal) and the IBM Anyplace computer terminal. These units are considered "kiosks" only in functionality delivered and typically only incorporate touchscreen, bar code scanner and/or magnetic stripe reader.
+
+Market segments for kiosk and self-service terminal manufacturers include photo kiosks, government, airlines, internet, music, retail loyalty, HR and financial services, just to name some.
+\cite{kelsen2012unleashing}
+
+
 \section{Reactive Programming}
+
+In 2001, after the the bursting of the dot-com com bubble, the Web 2.0 phenomenon appeared and a survival way to the recent collapse \cite{oreilly2005}.
+New applications aimed to involve the user on the content creation process.
+One way of engaging the user is to offer a familiar environment, a similar to the one used in a desktop computer.
+Web platforms and frameworks made use of \emph{reactive programming} \cite{reactive2014} to achieve a desktop-like experience on the web.
+A consequence of turning the content creation responsibility to the user is the massive amount of data created by them, which originated another phenomenon called \emph{big data} \cite{SharmaTWGS14}.
+In order to manage all these data, new paradigms emerged.
+\emph{Non-relational} or \emph{No-SQL} \cite{Strauch12} is a database paradigm that manage the data storage and retrieval without using a relational table.
+Novel web platforms and frameworks had to incorporate these new aspects in order to model and maintain the complexity requirement of the new applications.
 
 \section{Graph Data Structures}
 
-\section{Resource Constrains}
+
+Graphs are a fundamental data structure in the world of programming.
+Knowing the correct data structures to use with graph problems is critical \cite{topcoder}.
+Graphs can represent many different types of systems.
+A graph consists of two components: nodes and edges. 
+A node (or vertex) is a discrete position in the graph. 
+An edge (or connection) is a link between two vertices that can be either directed or undirected and may have a cost associated with it. 
+An undirected edge means that there is no restriction on the direction you can travel along the edge. 
+Formally, a \emph{graph} $G = {V, E}$ is defined as a set of vertices, $V$, and a collection of edges (which is not necessarily a set), $E$ \cite{berge1973graphs}.
+An edge can then be defined as $(u, v)$ where $u$ and $v$ are elements of $V$.
+%There are a few technical terms that it would be useful to discuss at this point as well:
+%
+%Order – The number of vertices in a graph Size – The number of edges in a graph
+
+\subsection{Trees}
+
+A tree is an undirected graph in which any two vertices are connected by exactly one path. 
+Thus, a acyclic connected graph is also a tree.
+
+
+\subsection{Basic methods for searching graphs}
+
+
+There are two methods for searching graphs that are prevalent: \emph{Depth First Search} and the \emph{Breadth First Search} \cite{joyner2010algorithmic}.
+
+%todo add citations, say its from the book
+\subsubsection{Breadth-first search}
+
+Breadth-first search (BFS) is a strategy for running through the
+vertices of a graph. 
+It was presented by Moore~\cite{Moore1959} in 1959 within the context of traversing mazes. 
+Lee~\cite{Lee1961} independently discovered the same algorithm in 1961 in his work on routing wires on circuit boards.
+
+The basic BFS algorithm can be described as follows. 
+Starting from a given vertex $v$ of a graph $G$, we first explore the neighbourhood of $v$ by visiting all vertices that are adjacent to $v$. 
+We then apply the same strategy to each of the neighbours of $v$. The strategy of exploring the neighbourhood of a vertex is applied to all vertices of $G$. 
+The result is a tree rooted at $v$ and this tree is a subgraph of
+$G$. 
+Algorithm~ \ref{alg:graph_algorithms:breadth_first_search_template}
+presents a general template for the BFS strategy. The tree resulting
+from the BFS algorithm is called a \emph{breadth-first search tree}.
+
+%todo fix alg
+%\begin{algorithm}[!htpb]
+%\DontPrintSemicolon
+%\SetAlgoNoLine
+%%%
+%%% input
+%\KwIn{A directed or undirected graph $G = (V, E)$ of order $n > 0$. A
+%  vertex $s$ from which to start the search. The vertices are numbered
+%  from $1$ to  $n = |V|$, i.e.~$V = \{1, 2, \dots, n\}$.}
+%%%
+%%% output
+%\KwOut{A list $D$ of distances of all vertices from $s$. A tree $T$
+%  rooted at $s$.}
+%\BlankLine
+%%%
+%%% algorithm body
+%$Q \assign [s]$\nllabel{alg:BFS:initialize_queue_visit_nodes}\tcc*[f]{queue of nodes to visit}\;
+%$D \assign [\infty, \infty, \dots, \infty]$\tcc*[f]{$n$ copies of $\infty$}\;
+%$D[s] \assign 0$\;
+%$T \assign [\,]$\nllabel{alg:BFS:initialize_empty_tree}\;
+%\While{$\length(Q) > 0$\nllabel{alg:BFS:while_loop:non_empty_queue}}{
+%  $v \assign \dequeue(Q)$\;
+%  \For{\rm each $w \in \adj(v)$\nllabel{alg:BFS:explore_neighborhood}}{
+%    \If{$D[w] = \infty$\nllabel{alg:BFS:marking_vertex_as_visited}}{
+%      $D[w] \assign D[v] + 1$\;
+%      $\enqueue(Q, w)$\;
+%      $\append(T, vw)$\nllabel{alg:BFS:while_loop:append_to_tree}\;
+%    }
+%  }
+%}
+%\Return $(D, T)$\;\caption{A general breadth-first search template.}
+%\label{alg:graph_algorithms:breadth_first_search_template}
+%\end{algorithm}
+
+The breadth-first search algorithm makes use of a special type of list called a \emph{queue}. 
+Formally, a queue $Q$ is a list of elements. 
+At any time, we only have access to the first element of $Q$, known as the \emph{front} or \emph{start} of the queue. We insert
+a new element into $Q$ by appending the new element to the \emph{rear} or \emph{end} of the queue. 
+The operation of removing the front of $Q$ is referred to as \emph{dequeue}, while the operation of appending to the rear of $Q$ is called \emph{enqueue}. 
+That is, a queue implements a first-in first-out~(FIFO) protocol for adding and moving elements. 
+As with lists, the \emph{length} of a queue is its total number of elements.
+
+\subsubsection{Depth-first search}
+
+
+A depth-first search~(DFS) is a graph traversal strategy similar to
+breadth-first search. Both BFS and DFS differ in how they explore each
+vertex. Whereas BFS explores the neighbourhood of a vertex $v$ before
+moving on to explore the neighbourhoods of the neighbours, DFS explores
+as deep as possible a path starting at $v$. One can think of BFS as
+exploring the immediate surrounding, while DFS prefers to see what is
+on the other side of the hill. In the 19th century,
+Lucas~\cite{Lucas1882.1894} and Tarry~\cite{Tarry1895} investigated
+DFS as a strategy for traversing mazes. Fundamental properties of DFS
+were discovered in the early 1970s by Hopcroft and
+Tarjan~\cite{HopcroftTarjan1973,Tarjan1972}.
+
+
+%\begin{algorithm}[!htpb]
+%\DontPrintSemicolon
+%\SetAlgoNoLine
+%%%
+%%% input
+%\KwIn{A directed or undirected graph $G = (V, E)$ of order $n > 0$. A
+%  vertex $s$ from which to start the search. The vertices are numbered
+%  from $1$ to  $n = |V|$, i.e.~$V = \{1, 2, \dots, n\}$.}
+%%%
+%%% output
+%\KwOut{A list $D$ of distances of all vertices from $s$. A tree $T$
+%  rooted at $s$.}
+%\BlankLine
+%%%
+%%% algorithm body
+%$S \assign [s]$\tcc*[f]{stack of nodes to visit}\;
+%$D \assign [\infty, \infty, \dots, \infty]$\tcc*[f]{$n$ copies of $\infty$}\;
+%$D[s] \assign 0$\;
+%$T \assign [\,]$\;
+%\While{$\length(S) > 0$\nllabel{alg:DFS:while_loop_tests_non_empty_stack}}{
+%  $v \assign \pop(S)$\;
+%  \For{\rm each $w \in \adj(v)$\nllabel{alg:DFS:for_loop_visit_neighbors}}{
+%    \If{$D[w] = \infty$\nllabel{alg:DFS:if_test_unvisited_neighbors}}{
+%      $D[w] \assign D[v] + 1$\;
+%      $\push(S, w)$\;
+%      $\append(T, vw)$\;
+%    }
+%  }
+%}
+%\Return $(D, T)$\;
+%
+%
+%\caption{A general depth-first search template.}
+%\label{alg:graph_algorithms:depth_first_search_template}
+%\end{algorithm}
+
+Algorithm~\ref{alg:graph_algorithms:depth_first_search_template}
+formalizes the above description of depth-first search. The tree
+resulting from applying DFS on a graph is called a
+\emph{depth-first search tree}. The general structure of this
+algorithm bears close resemblance to
+Algorithm~\ref{alg:graph_algorithms:breadth_first_search_template}. A
+significant difference is that instead of using a queue to structure
+and organize vertices to be visited, DFS uses another special type of
+list called a \emph{stack}. A list $L = [a_1, a_2, \dots, a_k]$ of $k$
+elements is a stack when we impose the same rules for element
+insertion and removal. The top and bottom of the stack are $L[k]$ and
+$L[1]$, respectively. The operation of removing the top element of the
+stack is referred to as \emph{popping} the element off the
+stack. Inserting an element into the stack is called \emph{pushing}
+the element onto the stack. In other words, a stack implements a
+last-in first-out~(LIFO) protocol for element insertion and removal,
+in contrast to the FIFO policy of a queue. We also use the term
+\emph{length} to refer to the number of elements in the stack.
+
+%\section{Resource Constrains}
