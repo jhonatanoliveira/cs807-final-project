@@ -3,45 +3,57 @@
 \chapter{Introduction}
 \label{sec:intro}
 
-\cleanchapterquote{}{}{(TODO)}
+%\cleanchapterquote{}{}{(TODO)}
 
 Accessibility is a key assistive accommodation to enable people  overcome physical, technological, or informational barriers \cite{acessguide13}.
-
-
-A \emph{terminal information systems} is a computation system which [blank].
-As a computation system, a terminal information systems is has specific constrains associated with its components.
+As companies seek for cost reductions, revenue opportunities, but yet with good quality of customer service, interactive kiosks has been a leading  medium for communication trend to enable their customers with self-service options \cite{abi16}.
+A \emph{interactive kiosk} is a computation system terminal with spcialized hardware and software designed for self-service options, such as information, communication, commerce, entertainment, and education \cite{satish2012money}.
+As a computation system, a interactive kiosk systems has specific constrains associated with its components.
 For instance, power constrains applies since the terminal usually is implemented in low power devices.
-In this report we present the proposal and implementation of a low cost terminal information systems with voice recognition feature.
+In this report we present the proposal and implementation of a low cost interactive kiosk with voice recognition feature.
 
-In our project we sought for tools to enhance the experience and quality on a terminal information systems. 
-The first tool we chose was Wit.ai, [blank].
-Wit.ai is good [blank].
 
-As foe an efficient system to manage the data and improve the information retrieval, the implementation was executed with meteor.js, [blank]
-Meteor is goof [blank].
+In our project, we sought for tools to enhance the experience and quality on a terminal information systems.
+\emph{Wit.ai} \cite{1_wit.ai_2016} is a cloud service that allows a simple implementation of natural language processing for developers.
+With only a few lines of its code, Wit.ai let developers build a speech recognition and voice control console.
+
+
+As for an efficient system to manage the data and improve the information retrieval, the implementation was executed with the open-source web platform called Meteor.js.
+With \emph{Meteor.js} \cite{meteor}, or Meteor for short, developers can create applications using the Web 2.0 paradigms.
+The platform provide a reactive approach by focusing on the data flow.
+This is done by creating and managing events in the application.
+Also, data management is done with a non-SQL database called \emph{MongoDB} \cite{mongo}.
+Meteor simplify the application development by providing an unique programming language, javascript, throughout the whole stack process.
+Moreover, the platform makes available a set of common tools for business logic and data management.
+Finally, Meteor deploys the application in desktop and mobile without needing to change the source code.
+
 
 The cost of the project is manly dictated by the hardware component that holds the system.
-Some platforms usually utilized for low cost system are [blank].
-In our project the hardware chosen was Reaspberry.py, [blank].
-Rep is goof [blank.]
+Some platforms often utilized for low cost system are BeagleBone Black,  Arduino,  Phidgets, Udoo, and Electric Imp \cite{kubitza2013ingredients,pi2012raspberry}.
+In our project, the hardware chosen \emph{Raspberry Pi} \cite{pi2012raspberry}, a low cost single-board computer that runs on the various distribution of Linux operating system and can be programmed as needed.
+One of the Raspberry Pi advantages is it capability for a remote communication, making it a suitable choice for applications in the \emph{Internet of Things} (IoT) concept.
+
 
 With the implementation some issues were faced.
-For instance, one of our first goal of the project was to provide a map localization and direction to the user.
-This feature is commonly seen in big centers such malls, hospitals or airports.
-Althouhgt some systems are availabe, such as [blank]. we realized they are not at level for small systens, and when they are, not simply. This constarins are better descripted in Section [Blanck]
-We then turn our attentions for the soctware design and search engine of the termnal.
-We developted a semantic seach that permforms efficienty search on a tree structure.
-Well know algorith as breadth-fisrts and deapth serach was utilizled for this task.
+For instance, the initial plan for our final project included a service inside the app for indoor navigation.
+This feature is commonly seen in big centres such malls, hospitals or airports.
+However, indoor navigation itself is a complex and well known task problem in computer science and engineering.
+Although some systems are available, such as \emph{OpenStreetMap} and \emph{Anyplace} \cite{zeinalipour:IEEEIC16}, they are not at low level for simple systems and not suitable for small projects. 
+In this way, we wanted to show how resource constrain devices can still be used to provide such service by using cloud computing.
+After facing those constrains (better described in Chapter \ref{sec:ex-project}), we then turned our attentions for the software design and search engine of the interactive kiosk.
+We implemented basic methods for searching graphs that perform efficiently search on a tree structure: \emph{depth first search} and the \emph{breadth first search} \cite{joyner2010algorithmic}.
 
-The project presents many salient feature.
-Firts, it cn be voice activated and has state-of-the art speech recognition trhoeght the usage of the wit.ai.
-Second, it performs an efficienty seach on the tree strcytue implemented on metero. 
-Fetures as uncertanty decision,imcplemete infromation are well handled by the sustem.
-Thir, The implementations was condutc on a a reps.py, which is wel suited for the project since it is (i) [blank] and (ii) [blank].
-This report is organized as follows.
-Section .
-Section .
-Section .
-Section .
+The project presents many salient features.
+First, it can be voice activated and has state-of-the art speech recognition throughout the usage of the Wit.ai.
+Second, it performs an solid search on the tree structure implemented on the web platform Meteor.js.
+Features as uncertainty decision and incomplete information are well handled by the system.
+Third, the hardware of implementation was on a Raspberry Pi, which is well suited for the project since it is (i) low cost system, (ii) customizable and (iii) programmable.
+The result is an interactive kiosk that ``understands'' voice requests of informations, answering them with a variety of possibilities responses, all editable by the administrators.
 
+The reminder is as follows.
+Chapter \ref{sec:back} shows a quick overview on the history and background informations of interactive kiosk systems, reactive programming, and graph data structures.
+The project implementation along with related works, platforms used, and results are given in Chapter \ref{sec:project}.
+Chapter \ref{sec:ex-project} shows the discussion on constrains of developing an the app for indoor navigation.
+Conclusions are given in Chapter \ref{sec:conclusion}.
+%todo add here appendice, if any
 

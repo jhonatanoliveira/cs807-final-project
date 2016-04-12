@@ -1,49 +1,38 @@
 \chapter{Background}
 \label{sec:back}
 
-\cleanchapterquote{TODO.}{TODO}{(TODO)}
+%\cleanchapterquote{TODO.}{TODO}{(TODO)}
 
-%todo Covers topic in-depth with details, examples, and multiple citations.
 
-\section{Terminal Services}
+In this chapter we give an overview on interactive kiosk systems, reactive programming, and graph data structures.
+
+\section{Interactive Kiosk}
 
 
 As defined by \cite{satish2012money}, ``an interactive kiosk is a computer terminal featuring specialized hardware and software designed within a public exhibit that provides access to information and applications for communication, commerce, entertainment, and education.''
+By integrating emerging technologies, kiosks can perform a wide range of functions, evolving into self-service kiosks.
+The main types of self-service kiosks of telephony, financial services, photo, internet access, ticketing and information kiosk.
+According to \cite{kelsen2012unleashing}, ``historically electronic kiosks are standalone enclosures which accept user input, integrate many devices, include a software GUI application and remote monitoring and are deployed widely across all industry verticals.'' 
 
-Integration of technology allows kiosks to perform a wide range of functions, evolving into self-service kiosks.
-
-Types of kiosks
-Telekiosk
-Financial services kiosk
-Photo kiosk
-Internet kiosk
-Ticketing kiosk
-Information kiosk
-
-
-As companies in a range of industries seek to reduce costs, increase revenue opportunities, and improve customer service, they are increasingly turning to interactive kiosks as an additional channel to enable their customers with self-service options. 
-The number of interactive kiosks in operation will rise from approximately 1.6 million deployed in 2011 to nearly three million deployed globally by 2016.
-https://www.abiresearch.com/press/the-number-of-interactive-kiosks-in-operation-will/
-
-
-While the interactive kiosk market is expected to grow strongly over the next five years, there remain challenges to address.  “Interactive kiosks in various segments, such as healthcare, can face challenges regarding consumer acceptance, channel conflict with other means of interacting with the consumer, and with automated customer service not meeting a desired level of personalized support,” says Lucero. 
-
-
-Reliability is an important consideration, and as a result many specialised kiosk software applications have been developed for the industry. These applications interface with the bill acceptor and credit card swipe, meter time, prevent users from changing the configuration of software or downloading computer viruses and allow the kiosk owner to see revenue. Threats to reliability come from vulnerabilities to hacking, allowing access to the OS, and the need for a session or hardware restart
+The reduction of costs, increasing revenue opportunities, and improvement customer service are the main goals of companies in a range of industries \cite{rigby2015management}.
+Interactive kiosks has been used as an additional channel to enable their customers with self-service options, matching in this way the primarily goals those companies. 
+According to \cite{abi16}, by 2016 the number of interactive kiosks in operation will rise from approximately 1.6 million deployed in 2011 to nearly 3 million deployed globally.
+While the interactive kiosk market is expected to grow strongly, there remain challenges to address.
+Reliability is an important consideration.
+Many specialised kiosk software applications have been developed for the industry \cite{kelsen2012unleashing}. 
 %http://www.kioskmarketplace.com/whitepapers/software-security-the-importance-of-locking-down-your-self-service-kiosk/
 
 
-The kiosk industry is divided into three segments: kiosk hardware, kiosk software, and kiosk application. Kiosk software locks down your operating system (be it Apple, Windows, Android, or Linux) to restrict access and/or functionality of a kiosk hardware device. This allows for users to interact with an application that serves a self-service purpose such as those mentioned above.
-Kiosk manufacturing industry
+%The kiosk industry is divided into three segments: kiosk hardware, kiosk software, and kiosk application. 
+%Kiosk software locks down your operating system (be it Apple, Windows, Android, or Linux) to restrict access and/or functionality of a kiosk hardware device. 
+%This allows for users to interact with an application that serves a self-service purpose such as those mentioned above.
+%Kiosk manufacturing industry
 
-Historically electronic kiosks though are standalone enclosures which accept user input, integrate many devices, include a software GUI application and remote monitoring and are deployed widely across all industry verticals. This is considered "Kiosk Hardware" within the kiosk industry.
+%According to \cite{kelsen2012unleashing}, historically electronic kiosks are standalone enclosures which accept user input, integrate many devices, include a software GUI application and remote monitoring and are deployed widely across all industry verticals. 
+%Simple touchscreen terminals or panel-pcs are another segment and enjoy most of their footprint in POS retail applications and typically facing the employee. 
+%Terminals include NCR Advantage (740x terminal) and the IBM Anyplace computer terminal. T
+%hese units are considered "kiosks" only in functionality delivered and typically only incorporate touchscreen, bar code scanner and/or magnetic stripe reader.
 
-POS-related "kiosks" are "lane busting" check-outs such as seen at large retailers like Home Depot and Kroger.
-
-Simple touchscreen terminals or panel-pcs are another segment and enjoy most of their footprint in POS retail applications and typically facing the employee. Terminals include NCR Advantage (740x terminal) and the IBM Anyplace computer terminal. These units are considered "kiosks" only in functionality delivered and typically only incorporate touchscreen, bar code scanner and/or magnetic stripe reader.
-
-Market segments for kiosk and self-service terminal manufacturers include photo kiosks, government, airlines, internet, music, retail loyalty, HR and financial services, just to name some.
-\cite{kelsen2012unleashing}
 
 
 \section{Reactive Programming}
@@ -82,15 +71,17 @@ Thus, a acyclic connected graph is also a tree.
 \subsection{Basic methods for searching graphs}
 
 
-There are two methods for searching graphs that are prevalent: \emph{Depth First Search} and the \emph{Breadth First Search} \cite{joyner2010algorithmic}.
+There are two methods for searching graphs that are prevalent: \emph{Depth First Search} and the \emph{Breadth First Search}.
+In this section, all steps are drawn from \cite{joyner2010algorithmic}.
+For more details, please refer back to the original source.
 
-%todo add citations, say its from the book
+
 \subsubsection{Breadth-first search}
 
 Breadth-first search (BFS) is a strategy for running through the
 vertices of a graph. 
-It was presented by Moore~\cite{Moore1959} in 1959 within the context of traversing mazes. 
-Lee~\cite{Lee1961} independently discovered the same algorithm in 1961 in his work on routing wires on circuit boards.
+It was presented by Moore \cite{moore1959shortest} in 1959 within the context of traversing mazes. 
+Lee \cite{lee1961algorithm} independently discovered the same algorithm in 1961 in his work on routing wires on circuit boards.
 
 The basic BFS algorithm can be described as follows. 
 Starting from a given vertex $v$ of a graph $G$, we first explore the neighbourhood of $v$ by visiting all vertices that are adjacent to $v$. 
@@ -153,10 +144,8 @@ moving on to explore the neighbourhoods of the neighbours, DFS explores
 as deep as possible a path starting at $v$. One can think of BFS as
 exploring the immediate surrounding, while DFS prefers to see what is
 on the other side of the hill. In the 19th century,
-Lucas~\cite{Lucas1882.1894} and Tarry~\cite{Tarry1895} investigated
-DFS as a strategy for traversing mazes. Fundamental properties of DFS
-were discovered in the early 1970s by Hopcroft and
-Tarjan~\cite{HopcroftTarjan1973,Tarjan1972}.
+Lucas and Tarry investigated DFS as a strategy for traversing mazes. 
+Fundamental properties of DFS were discovered in the early 1970s by Hopcroft and Tarjan \cite{schrijver2012history}.
 
 
 %\begin{algorithm}[!htpb]
