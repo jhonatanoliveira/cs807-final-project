@@ -1,0 +1,254 @@
+\chapter{Appendices}
+\label{sec:appendices}
+
+\section*{Templates}
+
+Follows the template for the service page.
+This template makes the editing of the knowledge tree more reactive.
+Due to space limitation, we will not show the other templates.
+
+\begin{lstlisting}[language=java]
+function drawTree() {
+    Meteor.call("getDataTree", Session.get("serviceId"), function(error, result){
+        if (error) {
+            bootbox.alert("Error retrieving the nodes. Please, try again.")
+        } else {
+            $('#tree').treeview({data: result});
+        }
+    });
+}
+
+
+
+Template.serviceTemplate.onRendered(function(){
+    var data = []
+    drawTree();
+});
+
+
+
+Template.serviceTemplate.events({
+    "click .add-child": function(e) {
+        var selectedNodes = $('#tree').treeview('getSelected');
+        if (selectedNodes.length > 0 ) {
+            var selectedNode = selectedNodes[0];
+
+            bootbox.prompt("What is the value of the node?", function(result) {                
+                if (result) {                                             
+                    Nodes.insert({serviceId: Session.get("serviceId"), parent: selectedNode._id, value: result});
+                    drawTree();
+                }
+            });
+        } else {
+            bootbox.alert("Please, select a node first.");
+        }
+    },
+
+    "click .remove-branch": function(e) {
+        var selectedNodes = $('#tree').treeview('getSelected');
+        if (selectedNodes.length > 0 ) {
+            var selectedNode = selectedNodes[0];
+
+            bootbox.confirm("Are you sure that you want to remove this node and ALL its descendants?", function(result) {                
+                if (result) {                                             
+                    Meteor.call("removeBranch", selectedNode._id, Session.get("serviceId"));
+                    drawTree();
+                }
+            });
+        } else {
+            bootbox.alert("Please, select a node first.");
+        }
+    },
+
+    "click .edit-value": function(e) {
+        var selectedNodes = $('#tree').treeview('getSelected');
+        if (selectedNodes.length > 0 ) {
+            var selectedNode = selectedNodes[0];
+
+            bootbox.prompt({
+                title: "What is the NEW value of the node?",
+                value: selectedNode.text,
+                callback: function(result) {
+                    if (result) {
+                        Nodes.update(selectedNode._id, {$set: {value: result}});
+                        drawTree();
+                    }
+                }
+            });
+        } else {
+            bootbox.alert("Please, select a node first.");
+        }
+    },
+
+    "submit .search-form": function(e) {
+        e.preventDefault();
+        if (e.target.query.value.length > 0) {
+            Meteor.call("searchQuery", e.target.query.value, function(error, result){
+                if (error) {
+                    bootbox.alert("Problem while processing query. Please, try again.");
+                } else {
+                    $('#search-tree').treeview(
+                        {
+                            data: result,
+                            showBorder: false
+                        }
+                        );
+                }
+            });
+        } else {
+            bootbox.alert("Please, type in a query.");
+        }
+    }
+});
+\end{lstlisting}
+
+
+\section*{Server side methods}
+
+These are methods implemented on the server side which can be called from the client.
+These methods perform graph search and string manipulations and sends back only the final answer to the client.
+
+\begin{lstlisting}[language=java]
+Meteor.methods(
+{
+  removeAllNodes: function(serviceId) {
+    if (this.userId) {
+      Nodes.remove({serviceId: serviceId});
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  getDataTree: function(serviceId) {
+    var data = [];
+
+    if (this.userId) {
+
+        // Breadth-first search
+        var queue = [];
+        var root = Nodes.findOne({serviceId: serviceId, parent: ""});
+        var currentTreeNode = {"text": root.value, _id: root._id, nodes: []};
+        data.push(currentTreeNode);
+
+        queue.push(currentTreeNode);
+
+        while(queue.length > 0) {
+            currentTreeNode = queue.pop();
+            Nodes.find({serviceId: serviceId, parent: currentTreeNode._id}).forEach(function(post){
+                var childTreeNode = {"text": post.value, _id: post._id, nodes: []};
+                currentTreeNode.nodes.push(childTreeNode);
+                queue.push(childTreeNode);
+            });
+        }
+    }
+    return data;
+  },
+
+  removeBranch: function(nodeId, serviceId) {
+    if (this.userId) {
+        // Breadth-first search
+        var queue = [];
+        var currentTreeNode = nodeId;
+
+        queue.push(currentTreeNode);
+
+        while(queue.length > 0) {
+            currentTreeNode = queue.pop();
+            Nodes.remove({_id: currentTreeNode, serviceId: serviceId});
+            Nodes.find({serviceId: serviceId, parent: currentTreeNode}).forEach(function(post){
+                var childTreeNode = post._id;
+                queue.push(childTreeNode);
+            });
+        }
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  searchQuery: function(query, serviceId) {
+    var bestNodes = [];
+    if (this.userId) {
+
+        // Breadth-first search
+        var queue = [];
+        var root = Nodes.findOne({parent: ""});
+        var currentTreeNode = {_id: root._id, points: 0, confidence: 0};
+
+        queue.push(currentTreeNode);
+
+        var hasNewBestNode = false;
+        while(queue.length > 0) {
+            currentTreeNode = queue.pop();
+            Nodes.find({parent: currentTreeNode._id}).forEach(function(post){
+              var newPoints = 0;
+
+              // Matching function: Using FuzzySet library from http://glench.github.io/fuzzyset.js/
+              // This library computes a score based on the Levenshtein distance
+              var CONFIDENCE_LEVEL = 0.2;
+
+              var fuzzySet = FuzzySet([post.value]);
+              var foundValue = fuzzySet.get(query);
+              if (foundValue && foundValue[0][0] > CONFIDENCE_LEVEL) {
+                newPoints = currentTreeNode.points + 1;
+
+                hasNewBestNode = true;
+              }
+
+              var childTreeNode = {_id: post._id, points: newPoints, confidence: foundValue ? foundValue[0][0] : 0};
+              queue.push(childTreeNode);
+
+              // Update best nodes
+              if(hasNewBestNode) {
+                if ((bestNodes.length == 0) || (newPoints == bestNodes[0].points)) {
+                  bestNodes.push(childTreeNode);
+                } else if(newPoints > bestNodes[0].points) {
+                  bestNodes = []
+                  bestNodes.push(childTreeNode);
+                }
+                hasNewBestNode = false;
+              }
+
+            });
+        }
+
+
+        // Breadth-first search to get all descendants of the best nodes
+
+        var data = [];
+
+        var queue = [];
+
+        for (var i = 0; i < bestNodes.length; i++) {
+          var n = Nodes.findOne({_id: bestNodes[i]._id});
+          var currentTreeNode = {_id: n._id, text: n.value, nodes: [], confidence: bestNodes[i].confidence};
+          data.push(currentTreeNode);
+          
+          queue.push(currentTreeNode);
+        }
+
+
+        while(queue.length > 0) {
+            currentTreeNode = queue.pop();
+            Nodes.find({parent: currentTreeNode._id}).forEach(function(post){
+                var childTreeNode = {_id: post._id, text: post.value, nodes: []};
+                currentTreeNode.nodes.push(childTreeNode);
+                queue.push(childTreeNode);
+            });
+        }
+
+    }
+
+    return data;
+  }
+}
+);
+    
+\end{lstlisting}
+
+
+\bf{Note}
+
+Due to space limitation, only two files were shown in this section.
+But the full source code for the application and this latex paper are available at the repository of this final project in \emph{https://github.com/jhonatanoliveira/cs807-final-project}.
