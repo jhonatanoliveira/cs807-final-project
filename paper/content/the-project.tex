@@ -1,23 +1,31 @@
 \chapter{The Project}
 \label{sec:project}
 
-\cleanchapterquote{TODO.}{TODO}{(TODO)}
+\cleanchapterquote{I feel much better now, I really do.}{HAL 9000}{2001: A Space Odyssey}
 
-%todo
-Introduction
+
+
+In this chapter we describe in more details the platforms utilized and show the steps of making the project alive. 
+We developed a self-service kiosk that can be voice activated, performs an solid search on the tree structure, all in a low cost  single-board computer.
+Our focus with the project is to use clouding platforms to overcome hardware platform limitations.
+The result is an interactive kiosk that ``understands'' voice requests of informations, answering them with a variety of possibilities responses, all editable by the administrators.
 
 
 \section{Related Works}
 
-%todo knolewdge tree, app: chatboots, study case, Eliza, Alice
-knolewdge tree, app: chatboots, study case, Eliza, Alice
+Related works on tree structure search can be drawn from the first attempt at building chatbots: ELIZA.
+\emph{ELIZA} was created in the 60’s by Joseph Weizenbaum with the objective to emulate a psychotherapist in clinical treatment \cite{weizenbaum1966eliza,weizenbaum1967contextual}. 
+Another example used in this field is ALICE.
+\emph{ALICE} \cite{schumaker2007evaluation}, which was adapted from ELIZA program, was built to entertain users and talk to them as a real person.
+Both chatbots used a tree structure representation (knolewdge tree) which contained all patterns and templates.
+The pattern matching algorithm used was depth first search technique, as presented in Algorithm~\ref{alg:graph_algorithms:depth_first_search_template}
+
 
 \section{The Platforms}
 
-%todo add intro
+Now we describe the platforms for utilized for the project, namely, Wit.ai, Metore.js, and Raspberry Pi.
 
 \subsection{Wit.ai}
-%todo fix
 
 \emph{Wit.ai} is \emph{cloud service} that turns speech or text into actionable data.
 Wit is supported on every major platform and can be implemented in mobile apps, home automation, wearable devices, robots, and messenger agents.
@@ -25,12 +33,14 @@ Thus, it is a interesting \emph{natural language processing} tool for developers
 
 \subsubsection{History and Background}
 
+\emph{Natural language processing} is the technology for dealing with a variety of human language in thousands of languages and varieties \cite{jurafsky2014speech}. 
+Since the last decade, every year we seem more of successful natural language processing applications on our day-by-day.
+Spelling and grammar correction in word processors, machine translation on the web, and email spam detection are some of the many applications of natural language processing that are present on our most common daily routine.
+Observing this potential, the online social networking service \emph{Facebook} acquired \cite{1_wit.ai_2016}, a startup founded to create an API for building voice-activated interfaces. 
+
 \subsubsection{Getting Started}
 
-
-In this section, we demonstrate the steps to build a voice application on Wit.ai that obtains colour information from voice recognition and changes one html object with it ``on the fly.''
-Note that, in order to sign up on Wit.ai and create the voice application, Wit only allow access through a \cite{github_2016} account.
-
+Note that, in order to sign up on Wit.ai and create the voice application, Wit only allow access through a \emph{GitHub} \cite{github_2016} account.
 All steps are drawn from \cite{1_wit.ai_2016} Quick Start Guide.
 For more details, please refer back to the original source.
 
@@ -40,17 +50,17 @@ For more details, please refer back to the original source.
 Once with access to Wit.ai, one is already able to access to what is called the Wit Console. 
 The Console is where we can manage the Wit.ai-powered apps, configure a voice app and improve it.
 Thus, on the Wit Console App is where the voice applications logic abides.
-For instance, the Wit Console with Apps $HelloWorld$ and $ColourTest$ is shown in Figure \ref{fig:console}.
+For instance, the Wit Console with App $terminal-student$ is shown in Figure \ref{fig:expressions}.
 Note that if a user signs in for the first time, Wit.ai creates the first app and the user will land on its page.
 We can create new apps from the top-right menu.
 
-\begin{figure}
-\label{fig:console}
-\centerline{
-\includegraphics[width=\textwidth]{figures/Wit_Console.png}
-}
-\caption{The Wit Console.}
-\end{figure}
+%\begin{figure}
+%\label{fig:console}
+%\centerline{
+%\includegraphics[width=\textwidth]{figures/Wit_Console.png}
+%}
+%\caption{The Wit Console.}
+%\end{figure}
 
 %\subsection{Determining and Creating User Intent}
 \emph{Determining and Creating User Intent}
@@ -58,9 +68,9 @@ We can create new apps from the top-right menu.
 Given that the user has created a new app, it is time to determine the its intents.
 An intent is something that the end-user wants to perform.
 For example,
-``ask about the weather'', 
-``set an alarm on their smartwatch'', and 
-``say hello to their robot''.
+``What's Professor Xavier's phone number?'', 
+``show me Professor Xavier's room number'', and 
+``hello robot''.
 It is common to focus on a finite list of possible intents.
 Hence, each intent corresponds to one action in the app.
 For our application, the intent is to ``change the colour of the object'' and also``greetings.''
@@ -69,9 +79,9 @@ Once with a raw speech or text input, Wit.ai will determine what is the user int
 
 For instance, all the following expressions should be mapped to the same intent:
 \begin{lstlisting}[language=html]
-``Change the colour to blue''
-``Colour: blue''
-``I want the colour to be blue''
+``What's Professor Xavier's phone number?''
+``Professor Xavier's phone number''
+``Show me the phone number of Professor Xavier''
 \end{lstlisting}
 
 
@@ -86,13 +96,12 @@ If there not exist an intent that fits, it is necessary to create a new intent.
 To create a new intent, the user must type a name for your new intent in the ``Name your intent'' field.
 Usually, intent names try to match the app functions or methods. 
 At least three expressions, even with synonymous way to say the same command, must be added.
-Figure \ref{fig:entents} shows the intents $colour$ and $greeting$ for the ColourTest App.
-Some of the expressions for $colour$ are listed in Example \ref{exe:intent}.
-
+Figure \ref{fig:entents} shows the intents $contacts$ and $event$ for the terminal-student App.
+Some of the expressions for $contact$ were previously mentioned.
 
 \begin{figure*}[!h]
     \includegraphics[width=\textwidth]{figures/entities.png}
-    \caption{The intents for the ColourTest App.}
+    \caption{The intents for the terminal-student App.}
     \label{fig:entents}
 \end{figure*}
 
@@ -103,10 +112,10 @@ Some of the expressions for $colour$ are listed in Example \ref{exe:intent}.
 It is time to query the voice app.
 At this point, we can already request the voice app via the Wit.ai API.
 
-Notice that, before trainig the app, it is necessary to add the \emph{Client Access Token} to the website.
+Notice that, before training the app, it is necessary to add the \emph{Client Access Token} to the website.
 We will show more details about this step in Section \ref{sec:web}.
 
-In the Inbox of the App we can see the examples said when inputed troght website.
+In the Inbox of the App we can see the examples said when inputed trought website.
 
 %\subsubsection{Validate Audio from the Inbox}
 
@@ -121,16 +130,16 @@ If not, we type the correct sentence and then validate it.
 
 
 At Inbox we can validate matches with expression and intents that were correctly captured by Wit.
-For instance, Figure \ref{fig:expressions} shows three expressions captured by Wit, the first one was validated as intent $greetings$, the second was \emph{Archived} since was any of the existing intents, and the third one was validated as intent $colour$.
-In our example, we also want to capture the targeted colour.
+For instance, Figure \ref{fig:expressions} shows two expressions captured by Wit, the first one was validated as intent $contacts$, the second was \emph{Archived} since was not any of the existing intents, and the third one was validated as intent $contacts$.
+In our example, we also want to capture the targeted phone number.
 This is called an \emph{Entity}. 
 We can create our own one or select a common one from the dropdown list. 
-For instance, the entity $value\_colour$ was created for the intent $colour$, as depicted in Figure \ref{fig:expressions} bottom.
+For instance, the entity $phone$ was created for the intent $contacts$, as depicted in Figure \ref{fig:expressions}.
 
 
 \begin{figure*}[!h]
 \begin{center}
-    \includegraphics[width=0.75\textwidth]{figures/expressions.png}
+    \includegraphics[width=\textwidth]{figures/expressions.png}
     \caption{Expressions captured by Wit.ai.}
     \label{fig:expressions}
 \end{center}
@@ -516,10 +525,10 @@ The requests from the user is treated by the Wit.ai platform.
 We use its natural language processing capabilities to understand the user's query and send the proper request to the server.
 This processing is done in a search within a knowledge tree, also saved on the server.
 
-%add as section:Discussion of group contributions
+%todo add as section:Discussion of group contributions
 \subsection{Discussion of group contributions}
 
-
+other channel used: slack GDrive
 
 \section{Results}
 
