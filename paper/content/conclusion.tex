@@ -1,4 +1,24 @@
 \chapter{Conclusion}
 \label{sec:conclusion}
 
-\cleanchapterquote{TODO.}{TODO}{(TODO)}
+%\cleanchapterquote{TODO.}{TODO}{(TODO)}
+
+An interactive kiosk contains specialized hardware and software designed within a public exhibit.
+As a computation system, a interactive kiosk systems has specific constrains associated with its components.
+Thus, an interactive kiosk must address resourceful solutions to minimize its possible constrains.
+In this project report we have shown an interactive kiosk with speech recognition for academic environments.
+We utilized three different platforms, including two cloud computing ones, namely Wit.ai and Meteor.js, and one hardware, Raspberry Pi.
+
+Our focus with the project was to use clouding platforms to overcome hardware platform limitations.
+For such, spcialized concepts were required as reactive programming and graph data structures.
+In this way, we could make a system that interact with the user by a terminal client using a Raspberry Pi, and replies to the user by processing the query on the server side.
+These services are of two types: data services and external services.
+The data service is internally described by a knowledge tree.
+All corresponding knowledge trees can be edited in this same administrator screen.
+Basic methods for searching graphs such as DFS were essential for traversing the tree for proper information retrieval.
+
+The initial plan, however, included a service inside the app for indoor navigation.
+Indoor navigation itself is a complex and well known task problem in computer science and engineering.
+We did a broad research on publicly available solutions for indoor navigation, including paid, free or open source ones.
+After several tests, we decided to do not go further with the indoor navigation due to its complexity requirements for implementation.
+Even though this application were not able to be applied, we achieved our goal of implementing a self-service kiosk (university level).

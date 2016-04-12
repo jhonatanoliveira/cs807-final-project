@@ -36,7 +36,7 @@ Thus, it is a interesting \emph{natural language processing} tool for developers
 \emph{Natural language processing} is the technology for dealing with a variety of human language in thousands of languages and varieties \cite{jurafsky2014speech}. 
 Since the last decade, every year we seem more of successful natural language processing applications on our day-by-day.
 Spelling and grammar correction in word processors, machine translation on the web, and email spam detection are some of the many applications of natural language processing that are present on our most common daily routine.
-Observing this potential, the online social networking service \emph{Facebook} acquired \cite{1_wit.ai_2016}, a startup founded to create an API for building voice-activated interfaces. 
+Observing this potential, the online social networking service \emph{Facebook} acquired Wit \cite{1_wit.ai_2016}, a startup founded to create an API for building voice-activated interfaces. 
 
 \subsubsection{Getting Started}
 
@@ -415,67 +415,72 @@ The DDP protocol is a simple specification on how other languages can communicat
 
 \subsection{Raspberry Pi}
 
-%todo add photo resppi
+
 The \emph{Raspberry Pi} a low cost is single-board computer developed in the UK by the Raspberry Pi Foundation with the intention of stimulating the teaching of basic computer science in schools \cite{pi2012raspberry}.
 It is a capable small device that is capable of doing everything a desktop computer does, from browsing the internet and playing high-definition video, to making spreadsheets, word-processing, and playing games \cite{resp2}.
+
+
 
 The Raspberry Pi has a Broadcom BCM2835 system on a chip (SoC), which includes an ARM1176JZF-S 700 MHz processor, VideoCore IV GPU, and 256 megabytes of RAM. 
 It uses an SD card for booting and long-term storage.
 The Raspberry Pi 2 Model B is the second generation Raspberry Pi. 
 It replaced the original Raspberry Pi 1 Model B+ in February 2015. 
 Compared to the Raspberry Pi 1 it has: (i) A 900MHz quad-core ARM Cortex-A7 CPU and (ii) 1GB RAM \cite{resp2}.
+The Raspberry Pi Model A (left) and Model B (right) board are shown in Figure \ref{fig:resp}.
+
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{figures/resppi.png}
+\caption{The Raspberry Pi Model A (left) and Model B (right) board \cite{resp2}.}
+\label{fig:resp}
+\end{center}
+\end{figure}
 
 
 
 \subsubsection{History and Background}
 
-%todo adjust
 In 2006, early concepts of the Raspberry Pi were based on the Atmel ATmega644 microcontroller \cite{wong2011build}.
 The Model A was not the first Raspberry Pi to hit general availability – that distinction went to the Model B. 
 The A was, nevertheless, the truest to the bare-bones ethos of the Pi project, retailing for \$25 and initially packing just 128MB of memory. (Later raised to 256MB.)
 
 \subsubsection{Getting Started}
 
-Required:
-SD Card. The newer Raspberry Pi Model A+, Raspberry Pi Model B+, Raspberry Pi 2 Model B, Raspberry Pi Zero, and Raspberry Pi 3 Model B require micro SD cards.
-Display and connectivity cables
-Keyboard and mouse
-Power supply
+All steps are drawn from \cite{resp2} Raspberry Pi 2 Model B product documentation.
+For more details, please refer back to the original source.
 
-Not essential but helpful to have
+Some components are required in order to have a functioning Raspberry Pi device.
+It is required: a SD Card (the newer Raspberry Pi Model A+, Raspberry Pi Model B+, Raspberry Pi 2 Model B, Raspberry Pi Zero, and Raspberry Pi 3 Model B require micro SD cards); display and connectivity cables; keyboard and mouse; and power supply.
+It is not essential, but helpful to have internet connection to update or download software.
+To connect your Raspberry Pi to the internet, it can be done either via an Ethernet cable or a WiFi adapter.
+  
 
-    Internet connection
-        To update or download software, we recommend that you connect your Raspberry Pi to the internet, either via an Ethernet cable or a WiFi adapter.
+\emph{Plugging in the Raspberry Pi}
 
+Before plugging anything into the Raspberry Pi, it is necessary to be made sure that we have all the equipment listed above to hand. 
+Once confirmed, the following instructions apply:
+(i) Begin by slotting the SD card into the SD card slot on the Raspberry Pi, which will only fit one way.
+(ii) next, plug the USB keyboard and mouse into the USB slots on the Raspberry Pi.
+(iii) Make sure that the monitor or TV is turned on, and that the  right input (e.g. HDMI 1, DVI, etc.) have been selected;
+(iv) then, connect the HDMI cable from your Raspberry Pi to the monitor or TV.
+(v) If its is intended to connect the Raspberry Pi to the internet, plug an Ethernet cable into the Ethernet port next to the USB ports, otherwise skip this step.
+(vi) When all the required cables and SD card have been plugged in, plug in the micro USB power supply. This action will turn on and boot your Raspberry Pi.
+(vii) If this is the first time the Raspberry Pi and NOOBS SD card have been used, then its is necessary have to select an operating system and configure it. Follow the NOOBS guide to do this.
 
-Plugging in your Raspberry Pi
-
-Before you plug anything into your Raspberry Pi, make sure that you have all the equipment listed above to hand. Then follow these instructions:
-
-    Begin by slotting your SD card into the SD card slot on the Raspberry Pi, which will only fit one way.
-    Next, plug your USB keyboard and mouse into the USB slots on the Raspberry Pi.
-    Make sure that your monitor or TV is turned on, and that you have selected the right input (e.g. HDMI 1, DVI, etc.).
-    Then connect your HDMI cable from your Raspberry Pi to your monitor or TV.
-    If you intend to connect your Raspberry Pi to the internet, plug an Ethernet cable into the Ethernet port next to the USB ports, otherwise skip this step.
-    When you are happy that you have plugged in all the required cables and SD card, plug in the micro USB power supply. This action will turn on and boot your Raspberry Pi.
-    If this is the first time your Raspberry Pi and NOOBS SD card have been used, then you will have to select an operating system and configure it. Follow the NOOBS guide to do this.
-
-Read more in our documentation.
+For more information, please read more in our documentation.
 
 \subsubsection{Resource Constrains}
 
-The main disadvantages of Raspberry Pi are \cite{vujovic2014raspberry}:
-It does not have a real-time clock (RTC) with a backup battery but it can easily work around the missing clock using a network time server, and most operating systems do this automatically.
+We now list the main disadvantages commonly listed of a Raspberry Pi \cite{vujovic2014raspberry}.
+The first one is linked to a power constrain.A Raspberry Pi does not have a real-time clock (RTC) with a backup battery.
+However, this problem can easily work around using a network time server, and most operating systems do this automatically.
 
-It does not have a Basic Input Output System (BIOS) so it always boots from an SD card.
+Not necessarily a disadvantages, but it can be seen as one, a Raspberry Pi does not have a Basic Input Output System (BIOS) so it always boots from an SD card.
+Also, it does not support Bluetooth or WiFi out of the box but these supports can be added by USB dongles.
 
-It does not support Bluetooth or WiFi out of the box but these supports can be added by USB dongles.
-
-Unfortunately, most Linux distributions are still a bitpicky about their hardware, so it should be first checked whether flavor of Linux supports particular device.
-
-It doesn’t have builtin an Analog to Digital converter. External component must be used for AD conversion.
-
-It has a relatively small number of digital I/O, but it can be expanded with external logic devices.
+Finally, it has a relatively small number of digital I/O.
+This problem can be easily addressed by expanding with external logic devices.
 
 \section{Implementation}
 
@@ -491,21 +496,6 @@ It has a relatively small number of digital I/O, but it can be expanded with ext
 %    - problem: when we have the query found in the parent and child. Eg: tainara -> tainara@gmail.com
 
 
-How the project works.
-
-- Administration scheme:
-    - Services
-        - Data
-            - Knowledge tree
-                - The tree is built in server not in client
-        - External
-            - Map with key-value being the key the name of the external service and the value a function which runs the service
-
-- Searching the tree
-    - scoring the tree with one pass
-    - problem: when we have the query found in the parent and child. Eg: tainara -> tainara@gmail.com
-
-% add as section:  Description of design process
 \subsection{Description of design process}
 
 The design process of our project is based on three different platforms, including two cloud computing ones, namely Wit.ai and Meteor.js, and one hardware, Raspberry Pi.
@@ -525,10 +515,37 @@ The requests from the user is treated by the Wit.ai platform.
 We use its natural language processing capabilities to understand the user's query and send the proper request to the server.
 This processing is done in a search within a knowledge tree, also saved on the server.
 
-%todo add as section:Discussion of group contributions
 \subsection{Discussion of group contributions}
 
-other channel used: slack GDrive
+On January, the project was discussed by classmates and professor and procedures and deadlines were arranged.
+Our group consisted of 2 individuals: André E. dos Santos and Jhonatan S. Oliveira. 
+Our goal was to present the most important information from our project implementation of a self-service kiosk.
+As a group, we wanted to address key points while relating them to our learning process of the platforms involved.
+
+Our first step in achieving this goal was to meet regurlarly (in our research lab).
+In those meetings, we first threw out ideas on what we were thinking regarding the project. 
+André bought the Raspberry Pi and was in charge of having Wit.ai running.
+Jhonatan implemented the administrator system on meteor.js.
+The implementation precesses, assembly and testing were performed together.
+The same can be stated for the writing process of this report.
+
+
+When problems were encountered, the decision were done after a brief discussion, always following guide lines of the instructors Dr. Gerhard and Mr. Tomesh.
+Those casual meetings with the instructor were biweekly arranged after classes.
+
+
+Some channels of communications played important roles on the assembly of this project.
+First, the version control tools Github.
+Our work were safely administrated and saved in a shared repository.
+However, other channels like Slack and  Google Drive were constantly used.
+
+
+Our group worked very well together. 
+Each person expressed their ideas with a constant open line of communication. 
+Even though the feature of indoors localization were not able to be applied, we achieved our goal of implementing a self-service kiosk (university level).  
+Overall, the project was a success. 
+
+
 
 \section{Results}
 
@@ -608,3 +625,4 @@ Anyway, the configuration page allows the administrator to set sizes of the map 
 \label{fig:sys_serv}
 \end{center}
 \end{figure}
+
