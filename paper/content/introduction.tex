@@ -6,31 +6,39 @@
 \cleanchapterquote{}{}{(TODO)}
 
 Accessibility is a key assistive accommodation to enable people  overcome physical, technological, or informational barriers \cite{acessguide13}.
-
-
-A \emph{terminal information systems} is a computation system which [blank].
-As a computation system, a terminal information systems is has specific constrains associated with its components.
+As companies seek for cost reductions, revenue opportunities, but yet with good quality of customer service, interactive kiosks has been a leading  medium for communication trend to enable their customers with self-service options \cite{abi16}.
+A \emph{interactive kiosk} is a computation system terminal with spcialized hardware and software designed for self-service options, such as information, communication, commerce, entertainment, and education \cite{satish2012money}.
+As a computation system, a interactive kiosk systems has specific constrains associated with its components.
 For instance, power constrains applies since the terminal usually is implemented in low power devices.
-In this report we present the proposal and implementation of a low cost terminal information systems with voice recognition feature.
+In this report we present the proposal and implementation of a low cost interactive kiosk with voice recognition feature.
 
-In our project we sought for tools to enhance the experience and quality on a terminal information systems. 
-The first tool we chose was Wit.ai, [blank].
-Wit.ai is good [blank].
 
-As foe an efficient system to manage the data and improve the information retrieval, the implementation was executed with meteor.js, [blank]
-Meteor is goof [blank].
+In our project, we sought for tools to enhance the experience and quality on a terminal information systems.
+\emph{Wit.ai} \cite{1_wit.ai_2016} is a cloud service that allows a simple implementation of natural language processing for developers.
+With only a few lines of its code, Wit.ai let developers build a speech recognition and voice control console.
+
+
+As for an efficient system to manage the data and improve the information retrieval, the implementation was executed with the open-source web platform called Meteor.js.
+With \emph{Meteor.js} \cite{meteor}, or Meteor for short, developers can create applications using the Web 2.0 paradigms.
+The platform provide a reactive approach by focusing on the data flow.
+This is done by creating and managing events in the application.
+Also, data management is done with a non-SQL database called \emph{MongoDB} \citep{mongo}.
+Meteor simplify the application development by providing an unique programming language, javascript, throughout the whole stack process.
+Moreover, the platform makes available a set of common tools for business logic and data management.
+Finally, Meteor deploys the application in desktop and mobile without needing to change the source code.
+
 
 The cost of the project is manly dictated by the hardware component that holds the system.
-Some platforms usually utilized for low cost system are [blank].
-In our project the hardware chosen was Reaspberry.py, [blank].
-Rep is goof [blank.]
+Some platforms often utilized for low cost system are BeagleBone Black,  Arduino,  Phidgets, Udoo, and Electric Imp \cite{kubitza2013ingredients,pi2012raspberry}.
+In our project, the hardware chosen \emph{Raspberry Pi} \cite{pi2012raspberry}, a low cost single-board computer that runs on the various distribution of Linux operating system and can be programmed as needed.
+One of the Raspberry Pi advantages is it capability for a remote communication, making it a suitable choice for applications in the \emph{Internet of Things} (IoT) concept.
 
 With the implementation some issues were faced.
 For instance, one of our first goal of the project was to provide a map localization and direction to the user.
-This feature is commonly seen in big centers such malls, hospitals or airports.
-Althouhgt some systems are availabe, such as [blank]. we realized they are not at level for small systens, and when they are, not simply. This constarins are better descripted in Section [Blanck]
-We then turn our attentions for the soctware design and search engine of the termnal.
-We developted a semantic seach that permforms efficienty search on a tree structure.
+This feature is commonly seen in big centres such malls, hospitals or airports.
+Although some systems are available, such as [blank], we realized they are not at level for small systems, and when they are, not simply. This constrains are better descripted in Section [Blanck]
+We then turn our attentions for the software design and search engine of the interactive kiosk.
+We developed a semantic seach that permforms efficienty search on a tree structure.
 Well know algorith as breadth-fisrts and deapth serach was utilizled for this task.
 
 The project presents many salient feature.
@@ -38,6 +46,9 @@ Firts, it cn be voice activated and has state-of-the art speech recognition trho
 Second, it performs an efficienty seach on the tree strcytue implemented on metero. 
 Fetures as uncertanty decision,imcplemete infromation are well handled by the sustem.
 Thir, The implementations was condutc on a a reps.py, which is wel suited for the project since it is (i) [blank] and (ii) [blank].
+%The result is an interactive webpage that ``understandsv'' voice orders and modify its object colour according to the commands of the user.
+
+
 This report is organized as follows.
 Section .
 Section .
