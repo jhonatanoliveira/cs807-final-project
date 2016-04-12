@@ -498,7 +498,23 @@ How the project works.
 
 % add as section:  Description of design process
 \subsection{Description of design process}
-Design process.
+
+The design process of our project is based on three different platforms, including two cloud computing ones, namely Wit.ai and Meteor.js, and one hardware, Raspberry Pi.
+The overview design is a system implemented in Meteor.js containing a server and a client.
+Here, the server is a more powerful computer, capable of processing exhaustive algorithms.
+Thus, the server is used as a central processing unit and only forward responses for the client's processing requests.
+The client is considered a less powerful computer, which receives orders from the user and send processing requests to the server.
+This design process is managed by Meteor.js by using its clear division between client and server code.
+
+The main idea in this division is to allow the client to make calls to functions implemented inside the server.
+These functions, in the other hand, returns plain text in json format to the client.
+In this way, a client would require only processing power enough to make the request.
+Our project focus on the Raspberry Pi.
+Then, whenever a processing algorithm requires too much power, we transfer that to the server side of the code.
+
+The requests from the user is treated by the Wit.ai platform.
+We use its natural language processing capabilities to understand the user's query and send the proper request to the server.
+This processing is done in a search within a knowledge tree, also saved on the server.
 
 %add as section:Discussion of group contributions
 \subsection{Discussion of group contributions}
@@ -507,6 +523,79 @@ Design process.
 
 \section{Results}
 
-Failures and successes.
+The system was implemented successfully with only one change in the original idea, which is not crucial to this demonstration.
+Our focus with the project was to use clouding platforms to overcome hardware platform limitations.
+In this way, we could make a system that interact with the user by a terminal client using a Raspberry Pi, and replies to the user by processing the query on the server side.
+The only feature we could not implement was the indoor navigation capability.
+This failure in our plans is further described in Section \ref{sec:ex-project}, as we also discuss the context and alternatives that we tried in more detail.
+Now, we describe and show our implemented system.
 
+The administrator log in the system using its unique account.
+For now, this is fixed and set automatically by the system on startup.
+For test purposes, the current username is \emph{admin} and password \emph{cs8072016}.
+The welcome page, shown in Figure \ref{fig:sys_welcome}, means a successful log in.
+This page has no useful information, but it was created thinking in a possible dashboard with overview statistics of the whole system.
 
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/welcome.png}
+\caption{Welcome page at the administrative side of the system. Future work might include a dashboard at this page.}
+\label{fig:sys_welcome}
+\end{center}
+\end{figure}
+
+Adding services to the system can be done by using the top menu bar.
+In ``Manage Services'', depicted in Figure \ref{fig:sys_mang_serv}, the administrator can create and delete services that are available for the user.
+These services are of two types: data services and external services.
+The data service is internally described by a knowledge tree.
+All corresponding knowledge trees can be edited in this same administrator screen (as described next).
+The external service is configured in a hash map in code.
+This is a flexible way of adding external APIs within the system.
+Whenever the administrator wants to make an API available to the user, one more pair of ``key-value'' needs to be added to that hash map.
+Figure \ref{fig:sys_add_serv} shows a popup used to add both type of services.
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/manage_serv.png}
+\caption{Add and remove services within the System. There are available two types of services: data and external. The former is described by a knowledge tree, while the later is described by an external API.}
+\label{fig:sys_mang_serv}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/add_serv.png}
+\caption{Popup to add a new service.}
+\label{fig:sys_add_serv}
+\end{center}
+\end{figure}
+
+Now, the data service type can be fully edited inside this administrator screen.
+As illustrated in Figure \ref{fig:sys_serv}, the administrator has a visual tool to expand/contract the branches of the tree.
+Using the tools in the right hand side, nodes can be added, removed and its label edited.
+Notice that removing a node also removes all its descendants.
+A sandbox for testing user queries is also added within this screen.
+In this way, the user can test a query on the fly, just like the user would ask.
+The answer is then depicted in the knowledge tree in the left hand side.
+Since this knowledge tree can always be edited, these available tools can be powerful for modelling a whole problem domain and testing them at the same time.
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/services.png}
+\caption{Editing a data service within the administrator screen: the knowledge tree can be fully edited visually and a search query can be tested on the fly.}
+\label{fig:sys_serv}
+\end{center}
+\end{figure}
+
+Lastly, a setting page for the indoor navigation was also created.
+As aforementioned, this feature is not available in this version of the system due to technical problems faced during the implementation.
+(For more details, see Section \ref{sec:ex-project}).
+Anyway, the configuration page allows the administrator to set sizes of the map presented to the user, as well as the accuracy used when answering localization queries.
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/map.png}
+\caption{Future works include indoor navigation capabilities allowing the administrator to set up this service from within the administration screen.}
+\label{fig:sys_serv}
+\end{center}
+\end{figure}
