@@ -1,20 +1,68 @@
 \chapter{The Ex-Project}
 \label{sec:ex-project}
 
-\cleanchapterquote{TODO.}{TODO}{(TODO)}
+\cleanchapterquote{Funny, how just when you think life can’t possibly get any worse it suddenly does.}{Marvin}{(The Hitchhiker’s Guide to the Galaxy)}
 
 The initial plan for our final project included a service inside the app for indoor navigation.
-The idea was to allow the user to ask for a location within the University of Regina main campus and the app would trace a route from where the device hosting the app is to where the user requested.
+The idea was to allow the user to ask for a location within the University of Regina (UofR) main campus and the app would trace a route from where the device hosting the app is to where the user requested.
 Indoor navigation itself is a complex and well known task problem in computer science and engineering.
 Our primary focus was to use some already available solution for indoor navigation, instead of trying to come up with our own solution.
 In this way, we wanted to show how resource constrain devices can still be used to provide such service by using cloud computing.
-
-We did a broad research on publicly available solutions for indoor navigation, including paid, free or open source ones.
+Our hardware platform, a Raspberry Pi, would need a GPS chip for self localization.
+Then, we considered using a simple IC shown in Figure \ref{fig:console}.
 
 \begin{figure}
 \label{fig:console}
 \centerline{
 \includegraphics[width=\textwidth]{figures/chip_gps.png}
 }
-\caption{}
+\caption{GPS integration for a Raspberry Pi.}
 \end{figure}
+
+We did a broad research on publicly available solutions for indoor navigation, including paid, free or open source ones.
+For the commercial options, the most accessible options that we found was Insoft (http://www.infsoft.com) and InDoors (http://indoo.rs).
+They both have well documented SDKs and support for multiple platforms, which is crucial for a variety of real world applications.
+The disadvantage of them is, first, the price which might be expensive for small projects/companies. And second, the use of specialized hardware to operate in full potential.
+Idoors, for instance, although has support for wireless mapping, recommends the use of beacons for better localization.
+These small devices are low energy cost bluetooth enabled which can communicate with smartphones.
+By using this signals, Indoors makes indoor navigation more accurate.
+
+We could find two open source options that we considered viable for a real worl implementation.
+Namely, OpenStreetMap (www.openstreetmap.org) and AnyPlace (http://anyplace.cs.ucy.ac.cy).
+The former has a internal project for indoor navigation (http://wiki.openstreetmap.org/wiki/Indoor\_Mapping) which maps the target location.
+The project even has a client called OpenLevelUp (http://openlevelup.net), which runs an implementation of it.
+Although the client is open source, the implementation is very specific for using the mapped location from OpenStreetMap.
+That is, it would be very hard to adapt that client in order to run a customized mapping made at the UofR.
+This required workload may not pay off for this prototype.
+Then, we decided to give a try on AnyPlace.
+
+Anyplace \cite{zeinalipour:IEEEIC16} is an open source alternative for indoor navigation.
+Their technology have won three awards at conferences in indoor navigation, including the 1st place at Evaluation of RF-based Indoor Localization Solutions for the Future Internet (EVARILOS Open Challenge), European Union.
+The project is structured into three pieces: the Viewer, the Architect, and the API.
+All of them work around a common database, saved at the project server.
+The Viewer is basically a client which can read from the database of mapped locations and exhibit these informations in a user friendly fashion.
+In order to do that, the Viewer uses a layer over the Google Maps application.
+Locations and their points of interest (POI) are shown with specific icons and information on this layer.
+The Architect is a web application designed to facilitate the entrance of information in their database.
+Using this interface, a user might define a new location in the map (again using Google Maps on the background) and its related POIs.
+After saving this entry at Architect, the database use by all clients (including the Viewer) are automatically updated.
+Lastly, the API is a web interface for reading information from the database and sending them though HTTP requests.
+General apps can be built by only using this API.
+
+We decide to use AnyPlace for the localization service inside our final project application.
+We used a map from the UofR provided at the official website to upload the main floor plan in the Architect.
+With the map online, we define several common POIs around the campus, including Tim Hortons, BOB, Subway, among others.
+The Architect also allows the creation of path among these POIs, which facilitate the task of finding the best path.
+The next step is to use a smartphone app to create a mapping of the location entry in the Architect app.
+This is done by mapping wireless connections and the feedback from the user throughout the paths.
+The last step would be to create a simple client to Anyplace inside our map.
+In this way, whenever the user ask a location question, we would be able to show a map and the correspondent path.
+Thus, we looked at the source code for the Viewer, which is a more robust client, looking for inspiration.
+Although we could get the beginning of the client running, that is a basic integration with the Anyplace API, we got stuck on the Google Maps integration.
+The problem was with creating the layer over Google Maps to show all of our required information.
+This is done within the Viewer and we tried to understand from there, but they used a different framework (angular.js) for implementing this task, while we use Meteor.js.
+That is, we could not use their solution in our application.
+
+We decided to do not go further with the indoor navigation due to its complexity requirements for implementation.
+This can be motivation for future works in this project.
+Indeed, our current application is flexible enough for incorporating any third part services, including indoor navigation.
